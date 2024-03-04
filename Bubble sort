@@ -1,0 +1,67 @@
+;6502 ASM sorting algorithm (bubble sort) By: JackTheGripper. Compares the current byte in the array with the one to the right of it and swaps it if the current byte is smaller. Sorts greatest to least. Only works in 6502js simulator by Skilldrick https://github.com/skilldrick/6502js. (monitor $0000 to $00ff to see values in memory.)
+
+ArrayGenerate: ;fills memory with an array of random 8 bit values.
+
+ldx $fe
+stx $00,Y
+iny
+cpy #$40 ;change this value to change array size
+bne ArrayGenerate
+jmp sortsetup
+
+sortsetup: ;makes sure both X and Y registers are sex to 0 and jumps to sort subroutine.
+
+ldx #$00
+ldy #$00
+jmp sort
+
+rstx: ;resets x to 0 and checks if any swaps were done in the last pass.
+
+ldx #$00
+cpx $0101
+beq done
+stx $0101
+jmp sort
+
+
+sort: ; makes sure x is within set parameters and then compares the current byte of the array with the one to the right of it then swaps if needed.
+
+cpx #$40 ;Set this equal to array size.
+beq rstx
+lda $00,X
+cmp $01,X
+beq equal
+bcs more
+jmp less
+
+equal: ;if the values are equal it will increment x, clear the carry flag, then jump back to the sort subroutine.
+
+inx
+clc
+jmp sort
+
+more: ;if the memory is larger than the current byte it will increment x, clear the carry flag, then jump back to the sort subroutine.
+
+inx
+clc
+jmp sort
+
+less: ;If the memory is less than the current bit it will swap the two values locations in the array then increment x, clear the carry, and jump back to the sort subroutine.
+
+ldy $00,X
+sty $0100
+ldy $01,X
+sty $00,X
+ldy $0100
+inx
+sty $00,X
+clc
+ldy #$01
+sty $0101
+jmp sort
+
+done: ;infinite no operation loop, here as a stop point.
+nop
+jmp done
+
+
