@@ -30,17 +30,11 @@ cpx #$40 ;Set this equal to array size.
 beq rstx
 lda $00,X
 cmp $01,X
-beq equal
-bcs more
+beq noSwap
+bcs noSwap
 jmp less
 
-equal: ;if the values are equal it will increment x, clear the carry flag, then jump back to the sort subroutine.
-
-inx
-clc
-jmp sort
-
-more: ;if the memory is larger than the current byte it will increment x, clear the carry flag, then jump back to the sort subroutine.
+noSwap: ;this will increment x, clear the carry flag, then jump back to the sort subroutine.
 
 inx
 clc
