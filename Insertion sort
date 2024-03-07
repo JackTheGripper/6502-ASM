@@ -1,0 +1,64 @@
+;6502 ASM sorting algorithm (insertion sort) By: JackTheGripper. Sorts greatest to least. Only works in 6502js simulator by Skilldrick https://github.com/skilldrick/6502js. (monitor $0000 to $00ff to see array in memory.)
+
+; I will comment the rest of this another day
+
+ArrayGenerate: ;fills memory with an array of random 8 bit values.
+
+ldx $fe
+stx $00,Y
+iny
+cpy #$40 ;change this value to change array size
+bne ArrayGenerate
+jmp sortsetup
+
+sortsetup: ;makes sure both X and Y registers are sex to 0 and jumps to sort subroutine.
+
+ldx #$00
+ldy #$00
+jmp sort
+
+sort: ;compares current byte with one to left of it.
+
+cpx #$3f ;Set this to one less than array size.
+beq done
+lda $01,X
+cmp $00,X
+beq noswap
+bcs noswap
+jmp swapcheck
+
+noswap:
+inx
+jmp sort
+
+swapcheck:
+stx $0102
+ldx $00
+cpx $0103
+ldx $0102
+beq more
+inx
+stx $0101
+dex
+jmp more
+
+more:
+sta $0100
+lda $00,X
+sta $01,X
+lda $0100
+sta $00,X
+lda $00,X
+dex
+cmp $00,X
+bcs jmpback
+jmp more
+
+jmpback:
+inx
+ldx $0101
+jmp sort
+
+done:
+nop
+jmp done
