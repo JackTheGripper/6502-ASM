@@ -1,4 +1,4 @@
-;6502 ASM sorting algorithm (insertion sort) By: JackTheGripper. Sorts greatest to least. Only works in 6502js simulator by Skilldrick https://github.com/skilldrick/6502js. (monitor $0000 to $00ff to see array in memory.)
+;6502 ASM sorting algorithm (insertion sort) By: JackTheGripper. Sorts least to greatest. Only works in 6502js simulator by Skilldrick https://github.com/skilldrick/6502js. (monitor $0000 to $00ff to see array in memory.)
 
 ; I will comment the rest of this another day
 
