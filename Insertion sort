@@ -11,7 +11,7 @@ cpy #$40 ;change this value to change array size
 bne ArrayGenerate
 jmp sortsetup
 
-sortsetup: ;makes sure both X and Y registers are sex to 0 and jumps to sort subroutine.
+sortsetup: ;makes sure both X and Y registers are set to 0 and jumps to sort subroutine.
 
 ldx #$00
 ldy #$00
