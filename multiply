@@ -1,0 +1,11 @@
+multiply:
+clc
+lda #5
+adc $00
+sta $00
+inx
+cpx #5
+beq done
+jmp multiply
+done:
+sta $00
