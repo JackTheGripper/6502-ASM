@@ -75,33 +75,43 @@ sta $058f
 sta $05af
 sta $05cf
 sta $05ef
-jmp graph
+jmp graphprep
 
-graph:
-ldx #$00
-jsr negative
-negative:
-txa
-adc #$f
-stx $00
-jsr multiplyneg
-positive:
+graphprep:
+ldx #0
+ldy #0
+jmp multiply
 
-drawneg:
-lda #$f
-stx $11
-ldx $10
-sta $0400,X
-ldx $11
-inx
-jmp negative
-
-multiplyneg: ;result is in memory $10
+multiply:
 clc
-lda $00 ;first number
-adc $10
-sta $10
+txa
+sta $20
+adc $00,x
+sta $00,x
+iny
+cpy $20
+beq done
+jmp multiply
+done:
+ldy #0
+sta $00,x
 inx
-cpx $00 ;second number
-beq drawneg
-jmp multiplyneg
+cpx #$10
+beq drawValsPrep
+jmp multiply
+
+drawValsPrep:
+ldx #0
+ldy #0
+
+drawVals:
+lda #$f
+ldx $00,y
+
+sta $0300,X
+iny
+cpy #$10
+beq doneGraphing
+jmp drawVals
+
+doneGraphing:
