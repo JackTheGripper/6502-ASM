@@ -3,9 +3,9 @@ ldx #31 ;PosChargeStartPosition
 stx $10
 ldx #0 ;NegChargeStartPosition
 stx $00
-ldx #1 ;PosChargeStartVelocity
+ldx #0 ;PosChargeStartVelocity
 stx $11
-ldx #1 ;NegChargeStartVelocity
+ldx #0 ;NegChargeStartVelocity
 stx $01
 ldx #0 ;PosChargeFieldStrength
 stx $12
@@ -28,7 +28,6 @@ beq simStart
 jmp DrawBg
 
 simStart:
-lda #0
 jsr DrawNegCharge1
 jsr DrawPosCharge1
 jsr MovementSim
@@ -37,12 +36,14 @@ jsr UpdateBG
 jmp simStart
 
 DrawNegCharge1:
+lda #2
 ldx $00
 sta $0300,X
 rts
 
 
 DrawPosCharge1:
+lda #6
 ldx $10
 sta $0300,X
 rts
@@ -51,38 +52,71 @@ MovementSim:
 
 neg:
 lda $01
-cmp #4
+cmp #0
+beq GravNeg
+lda $01
+cmp #5
 bcc leftNeg
 bcs rightNeg
-rightNeg:
-clc
-sbc #4
-adc $00
-sta $00
-jmp GravNeg
+
 leftNeg:
-clc
-adc $00
+sec
+lda $00
+sbc $01
 sta $00
 jmp GravNeg
+
+rightNeg:
+sec
+sbc #4
+sta $03
+clc
+lda $00
+adc $03
+sta $00
+jmp GravNeg
+
 GravNeg:
+lda $00
+cmp $10
+bcc less
+bcs more
+
+more:
+sec
+sbc $10
+
+less:
+clc
+adc $10
 
 pos:
+clc
 lda $11
-cmp #4
-bcc rightPos
-bcs leftPos
-rightPos:
-clc
-sbc #4
-adc $10
-sta $10
-jmp GravPos
+cmp #0
+beq GravPos
+lda $11
+cmp #5
+bcc leftPos
+bcs rightPos
+
 leftPos:
-clc
-adc $10
+sec
+lda $10
+sbc $11
 sta $10
 jmp GravPos
+
+rightPos:
+sec
+sbc #4
+sta $13
+clc
+lda $10
+adc $13
+sta $10
+jmp GravPos
+
 GravPos:
 rts
 
