@@ -1,0 +1,228 @@
+; this shit makes me want to repeatedly bang my head into a wall
+
+;Wolfram Elementary Cellular Automata Computer (i guess) By: JackTheGripper
+
+initDrawBg:
+ldy #$00
+lda #$01
+ldx #0
+stx $00
+jmp DrawBg
+
+DrawBg:
+sta $0200,Y
+sta $0300,Y
+sta $0400,Y
+sta $0500,Y
+iny
+cpy $00
+beq setup
+jmp DrawBg
+
+setup:
+
+ldy #$1
+
+;gives the program an initial input
+sty $1d ;point in data array to be changed
+
+jmp start ;recursive program starting address
+
+;rules
+;Put the rules for the automaton here, rule 110 is default
+R1:
+jmp o0
+R2:
+jmp o1
+R3:
+jmp o1
+R4:
+jmp o0
+R5:
+jmp o1
+R6:
+jmp o1
+R7:
+jmp o1
+R8:
+jmp o0
+
+start: ;starting/loopback point for recursion
+
+cpx #$d
+beq NxtItt
+cpx #$1d
+beq NxtItt
+cpx #$2d
+beq NxtItt
+cpx #$3d
+beq NxtItt
+cpx #$4d
+beq NxtItt
+cpx #$5d
+beq NxtItt
+cpx #$6d
+beq NxtItt
+cpx #$7d
+beq NxtItt
+cpx #$8d
+beq NxtItt
+cpx #$9d
+beq NxtItt
+cpx #$ad
+beq NxtItt
+cpx #$bd
+beq NxtItt
+cpx #$cd
+beq end
+
+lda $10,X
+cmp #$1
+beq c1
+jmp c0
+
+c1:
+lda $11,X
+cmp #$1
+beq c11
+jmp c01
+
+c11:
+lda $12,X
+cmp #$1
+beq R1
+jmp R2
+
+c01:
+lda $12,X
+cmp #$1
+beq R3
+jmp R4
+
+c0:
+lda $11,X
+cmp #$1
+beq c10
+jmp c00
+
+c10:
+lda $12,X
+cmp #$1
+beq R5
+jmp R6
+
+c00:
+lda $12,X
+cmp #$1
+beq R7
+jmp R8
+
+NxtItt:
+inx
+inx
+inx
+
+;output (come back here to finish)
+
+o0:
+inx 
+jmp start
+o1:
+sty $21,X
+inx
+jmp start
+
+end: ;stopping point for recursion displays results on visualizer
+drawresultssetup1:
+ldx #$0
+ldy #$0
+
+drawresults1:
+lda $10,X
+sta $200,Y
+inx
+iny
+cpy #$f
+beq NxtIttDrw1
+cpy #$2f
+beq NxtIttDrw1
+cpy #$4f
+beq NxtIttDrw1
+cpy #$6f
+beq NxtIttDrw1
+cpy #$8f
+beq NxtIttDrw1
+cpy #$af
+beq NxtIttDrw1
+cpy #$cf
+beq NxtIttDrw1
+cpy #$ef
+beq drawresultssetup2
+jmp drawresults1
+
+NxtIttDrw1:
+inx
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+jmp drawresults1
+
+drawresultssetup2:
+ldx #$0
+ldy #$0
+
+drawresults2:
+lda $90,X
+sta $300,Y
+inx
+iny
+cpy #$f
+beq NxtIttDrw2
+cpy #$2f
+beq NxtIttDrw2
+cpy #$4f
+beq NxtIttDrw2
+cpy #$6f
+beq NxtIttDrw2
+cpy #$8f
+beq NxtIttDrw2
+cpy #$af
+beq done
+jmp drawresults2
+
+NxtIttDrw2:
+inx
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+iny
+jmp drawresults2
+
+done:
