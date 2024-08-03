@@ -1,7 +1,5 @@
 ;6502 ASM sorting algorithm (insertion sort) By: JackTheGripper. Sorts least to greatest. Only works in 6502js simulator by Skilldrick https://github.com/skilldrick/6502js. (monitor $0000 to $00ff to see array in memory.)
 
-; I will comment the rest of this another day
-
 ArrayGenerate: ;fills memory with an array of random 8 bit values.
 
 ldx $fe
@@ -27,11 +25,11 @@ beq noswap
 bcs noswap
 jmp swapcheck
 
-noswap:
+noswap: ;if no swap is to be made in incremments x, then jumps to the sort subroutine
 inx
 jmp sort
 
-swapcheck:
+swapcheck: ;compares the values of the current byte with the one next to it
 stx $0102
 ldx $00
 cpx $0103
@@ -42,7 +40,7 @@ stx $0101
 dex
 jmp more
 
-more:
+more: ;swaps the two bits if its more and then compares it to the one next to it after swapping to see if it should be pushed further down the line
 sta $0100
 lda $00,X
 sta $01,X
@@ -51,14 +49,14 @@ sta $00,X
 lda $00,X
 dex
 cmp $00,X
-bcs jmpback
+bcs jmpback ;if the byte is where it belongs in the array then it calls the jumpback subroutine
 jmp more
 
-jmpback:
+jmpback: ;the jumpback subroutine jumps back to where it was before pushing the value to teh correct position
 inx
 ldx $0101
 jmp sort
 
-done:
+done: ;infinite no operation loop used as the end for the program.
 nop
 jmp done
