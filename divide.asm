@@ -1,3 +1,5 @@
+;Divides two numbers
+
 divPrep: ;only whole number results
 ldx #1
 ldy #40 ;numerator
