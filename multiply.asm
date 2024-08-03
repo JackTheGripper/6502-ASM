@@ -1,3 +1,5 @@
+;multiplys two numbers
+
 multiply: ;result is in memory $00
 clc
 lda #2 ;first number
