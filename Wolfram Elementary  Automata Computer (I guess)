@@ -1,35 +1,32 @@
-; this shit makes me want to repeatedly bang my head into a wall
+;Wolfram Elementary Cellular Automata By: JackTheGripper
+;this code is very non optimized partially because I made it at 4:00 AM, and im just not the best programmer so use at your own risk
 
-;Wolfram Elementary Cellular Automata Computer (i guess) By: JackTheGripper
-
-initDrawBg:
+initDrawBg: ;setup for the background filler
 ldy #$00
 lda #$01
 ldx #0
 stx $00
 jmp DrawBg
 
-DrawBg:
+DrawBg: ;fills background with white
 sta $0200,Y
 sta $0300,Y
 sta $0400,Y
 sta $0500,Y
 iny
 cpy $00
-beq setup
+beq setup ;once the background is filled jumps to the setup
 jmp DrawBg
 
 setup:
 
 ldy #$1
 
-;gives the program an initial input
-sty $1d ;point in data array to be changed
+sty $1d ;starting input for the automatan
 
-jmp start ;recursive program starting address
+jmp start ;jumps to the starting point of the program that runs the calculations for the automata
 
-;rules
-;Put the rules for the automaton here, rule 110 is default
+;below are the rules for the automaton rule 110 in in by default
 R1:
 jmp o0
 R2:
@@ -47,8 +44,9 @@ jmp o1
 R8:
 jmp o0
 
-start: ;starting/loopback point for recursion
+start: ;starting/loopback point for the code that computes what the automata should do 
 
+;the below code tells the program when to go on to computing the next line (horribly inneficient cuz im lazy)
 cpx #$d
 beq NxtItt
 cpx #$1d
@@ -75,6 +73,8 @@ cpx #$bd
 beq NxtItt
 cpx #$cd
 beq end
+
+;the below code determines what should be output based on the states of the adjacent cells and the given rules (once again horribly ineficient cuz im lazy)
 
 lda $10,X
 cmp #$1
@@ -117,22 +117,26 @@ cmp #$1
 beq R7
 jmp R8
 
-NxtItt:
+NxtItt: ;just increments x three times to go to the next line
 inx
 inx
 inx
 
-;output (come back here to finish)
+;outputs
 
-o0:
+o0: ;output =0
 inx 
 jmp start
-o1:
+
+o1: ;output =1
 sty $21,X
 inx
 jmp start
 
-end: ;stopping point for recursion displays results on visualizer
+end: ;stopping point for the automatan, moves on to draw the results on the screen
+
+;all of the below just draws the results on the screen (atrociously inneficient cuz im lazy)
+
 drawresultssetup1:
 ldx #$0
 ldy #$0
@@ -225,4 +229,4 @@ iny
 iny
 jmp drawresults2
 
-done:
+done: ;the end of my program thanks for using and/or reading my code, have a great day!
