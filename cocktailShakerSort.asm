@@ -73,7 +73,7 @@ beq noSwap
 bcs noSwap
 jmp less
 
-noSwap: ;this will increment x, clear the carry flag, then jump back to the sort subroutine.
+noSwap: ;this will increment x, then jump back to the sort subroutine.
 
 inx
 jmp sort
