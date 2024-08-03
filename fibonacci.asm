@@ -1,3 +1,5 @@
+;calculates fibonacci sequence
+
 ldx #1
 stx $00
 stx $01
