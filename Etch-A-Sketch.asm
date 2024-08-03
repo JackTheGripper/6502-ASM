@@ -1,3 +1,5 @@
+;I made this just for fun so dont mind it 
+
 initDrawBg:
 ldy #$00
 lda #$01
