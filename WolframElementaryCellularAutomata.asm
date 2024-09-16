@@ -22,11 +22,11 @@ setup:
 
 ldy #$1
 
-sty $1d ;starting input for the automatan
+sty $1d ;starting input for the automaton
 
-jmp start ;jumps to the starting point of the program that runs the calculations for the automata
+jmp start ;jumps to the starting point of the program that runs the calculations for the automaton
 
-;below are the rules for the automaton rule 110 in in by default
+;below are the rules for the automaton, rule 110 is in by default
 R1:
 jmp o0
 R2:
@@ -44,7 +44,7 @@ jmp o1
 R8:
 jmp o0
 
-start: ;starting/loopback point for the code that computes what the automata should do 
+start: ;starting/loopback point for the code that computes what the automaton should do 
 
 ;the below code tells the program when to go on to computing the next line (horribly inneficient cuz im lazy)
 cpx #$d
@@ -133,7 +133,7 @@ sty $21,X
 inx
 jmp start
 
-end: ;stopping point for the automatan, moves on to draw the results on the screen
+end: ;stopping point for the automaton, moves on to draw the results on the screen
 
 ;all of the below just draws the results on the screen (atrociously inneficient cuz im lazy)
 
