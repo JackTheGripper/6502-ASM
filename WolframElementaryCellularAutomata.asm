@@ -1,5 +1,5 @@
 ;Wolfram Elementary Cellular Automata By: JackTheGripper
-;this code is very non optimized partially because I made it at 4:00 AM, and im just not the best programmer so use at your own risk
+;this code is very non optimized partially because I made it at 4:00 AM, and im just not the best programmer
 
 initDrawBg: ;setup for the background filler
 ldy #$00
