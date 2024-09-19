@@ -17,21 +17,6 @@ ldy #$00
 jmp sort
 
 sort: ;compares current byte with one to left of it.
-sty $40
-stx $41
-sta $42
-ldy #0
-ldx #0
-lda #0
-sortdraw:
-lda $00,X
-sta $200,X
-inx
-cpx #$40
-bne sortdraw
-ldx $40
-ldy $41
-lda $42
 cpx #$3f ;Set this to one less than array size.
 beq done
 lda $01,X
@@ -68,6 +53,19 @@ bcs jmpback ;if the byte is where it belongs in the array then it calls the jump
 jmp more
 
 jmpback: ;the jumpback subroutine jumps back to where it was before pushing the value to the correct position
+sty $40
+stx $41
+sta $42
+ldx #0
+sortdraw:
+lda $00,X
+sta $200,X
+inx
+cpx #$40
+bne sortdraw
+ldx $40
+ldy $41
+lda $42
 inx
 ldx $0101
 jmp sort
