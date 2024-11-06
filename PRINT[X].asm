@@ -17,14 +17,35 @@ jmp DrawBg
 
 Main: 
 jsr PrintP
+jsr PrintSpace
 jsr PrintR
+jsr PrintSpace
 jsr PrintI
+jsr PrintSpace
 jsr PrintN
+jsr PrintSpace
 jsr PrintT
+jsr PrintSpace
 jsr PrintOB
+jsr PrintSpace
 jsr PrintX
+jsr PrintSpace
 jsr PrintCB
 jmp end
+
+PrintSpace:
+inx
+inx
+inx
+inx
+rts
+
+PrintNoSpace:
+inx
+inx
+inx
+rts
+
 
 PrintA:
 lda #0
@@ -37,10 +58,6 @@ sta $241,X
 sta $242,X
 sta $260,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintB:
@@ -55,10 +72,6 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintC:
@@ -71,10 +84,6 @@ sta $240,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintD:
@@ -88,10 +97,6 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintE:
@@ -105,10 +110,6 @@ sta $240,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintF:
@@ -120,10 +121,6 @@ sta $220,X
 sta $221,X
 sta $240,X
 sta $260,X
-inx
-inx
-inx
-inx
 rts
 
 PrintG:
@@ -136,10 +133,6 @@ sta $240,X
 sta $242,X
 sta $260,X
 sta $261,X
-inx
-inx
-inx
-inx
 rts
 
 PrintH:
@@ -153,10 +146,6 @@ sta $241,X
 sta $242,X
 sta $260,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintI:
@@ -169,10 +158,6 @@ sta $241,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintJ:
@@ -182,10 +167,6 @@ sta $222,X
 sta $240,X
 sta $242,X
 sta $261,X
-inx
-inx
-inx
-inx
 rts
 
 PrintK:
@@ -198,10 +179,6 @@ sta $240,X
 sta $242,X
 sta $260,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintL:
@@ -212,10 +189,6 @@ sta $240,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintM:
@@ -230,10 +203,6 @@ sta $240,X
 sta $242,X
 sta $260,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintN:
@@ -247,10 +216,6 @@ sta $240,X
 sta $242,X
 sta $260,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintO:
@@ -263,10 +228,6 @@ sta $240,X
 sta $242,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintP:
@@ -279,10 +240,6 @@ sta $240,X
 sta $241,X
 sta $242,X
 sta $260,X
-inx
-inx
-inx
-inx
 rts
 
 PrintQ:
@@ -296,10 +253,6 @@ sta $242,X
 sta $261,X
 sta $262,X
 sta $281,X
-inx
-inx
-inx
-inx
 rts
 
 PrintR:
@@ -312,10 +265,6 @@ sta $240,X
 sta $241,X
 sta $260,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintS:
@@ -329,10 +278,6 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintT:
@@ -343,10 +288,6 @@ sta $202,X
 sta $221,X
 sta $241,X
 sta $261,X
-inx
-inx
-inx
-inx
 rts
 
 PrintU:
@@ -359,10 +300,6 @@ sta $240,X
 sta $242,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintV:
@@ -374,10 +311,6 @@ sta $222,X
 sta $240,X
 sta $242,X
 sta $261,X
-inx
-inx
-inx
-inx
 rts
 
 PrintW:
@@ -392,10 +325,6 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintX:
@@ -407,10 +336,6 @@ sta $240,X
 sta $242,X
 sta $260,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintY:
@@ -420,10 +345,6 @@ sta $202,X
 sta $221,X
 sta $241,X
 sta $261,X
-inx
-inx
-inx
-inx
 rts
 
 PrintZ:
@@ -436,10 +357,6 @@ sta $240,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 Print1:
@@ -451,10 +368,6 @@ sta $241,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 Print2:
@@ -468,10 +381,6 @@ sta $241,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 Print3:
@@ -485,10 +394,6 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 Print4:
@@ -501,10 +406,6 @@ sta $240,X
 sta $241,X
 sta $242,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 Print5:
@@ -518,10 +419,6 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 Print6:
@@ -535,10 +432,6 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 Print7:
@@ -549,10 +442,6 @@ sta $202,X
 sta $222,X
 sta $241,X
 sta $261,X
-inx
-inx
-inx
-inx
 rts
 
 Print8:
@@ -568,10 +457,7 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
+rts
 
 Print9:
 lda #0
@@ -584,10 +470,6 @@ sta $240,X
 sta $241,X
 sta $242,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 Print0:
@@ -602,10 +484,6 @@ sta $242,X
 sta $260,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintOB:
@@ -616,10 +494,6 @@ sta $221,X
 sta $241,X
 sta $261,X
 sta $262,X
-inx
-inx
-inx
-inx
 rts
 
 PrintCB:
@@ -630,10 +504,86 @@ sta $221,X
 sta $241,X
 sta $261,X
 sta $260,X
-inx
-inx
-inx
-inx
+rts
+
+PrintBlock:
+lda #0
+sta $200,X
+sta $201,X
+sta $202,X
+sta $220,X
+sta $221,X
+sta $222,X
+sta $240,X
+sta $241,X
+sta $242,X
+sta $260,X
+sta $261,X
+sta $262,X
+rts
+
+PrintLineV:
+lda #0
+sta $201,X
+sta $221,X
+sta $241,X
+sta $261,X
+rts
+
+PrintLineH:
+lda #0
+sta $220,X
+sta $221,X
+sta $222,X
+sta $240,X
+sta $241,X
+sta $242,X
+rts
+
+PrintBS:
+lda #0
+sta $200,X
+sta $221,X
+sta $241,X
+sta $262,X
+rts
+
+PrintFSS:
+lda #0
+sta $222,X
+sta $241,X
+sta $240,X
+rts
+
+PrintBSS:
+lda #0
+sta $220,X
+sta $242,X
+sta $241,X
+rts
+
+PrintFS:
+lda #0
+sta $202,X
+sta $221,X
+sta $241,X
+sta $260,X
+rts
+
+PrintClear:
+lda #1
+sta $200,X
+sta $201,X
+sta $202,X
+sta $220,X
+sta $221,X
+sta $222,X
+sta $240,X
+sta $241,X
+sta $242,X
+sta $260,X
+sta $261,X
+sta $262,X
 rts
 
 end:
