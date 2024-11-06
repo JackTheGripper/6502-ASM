@@ -16,6 +16,15 @@ beq Main
 jmp DrawBg
 
 Main: 
+jsr PrintP
+jsr PrintR
+jsr PrintI
+jsr PrintN
+jsr PrintT
+jsr PrintOB
+jsr PrintX
+jsr PrintCB
+jmp end
 
 PrintA:
 lda #0
@@ -626,3 +635,5 @@ inx
 inx
 inx
 rts
+
+end:
