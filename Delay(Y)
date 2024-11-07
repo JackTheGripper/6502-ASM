@@ -1,0 +1,10 @@
+delay:
+ldy #$0
+delayloop:
+nop
+iny
+cpy #$a0
+beq delaydone
+jmp delayloop
+delaydone:
+rts
